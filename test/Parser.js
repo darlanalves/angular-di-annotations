@@ -26,6 +26,11 @@ describe('Parser', function() {
 			var results = Parser.parseLineComment(mockups.singleLineWithAttributes.text);
 			assertResults(results, mockups.singleLineWithAttributes.tags);
 		});
+
+		it('should parse a tag without a value', function() {
+			var results = Parser.parseLineComment(mockups.singleLineNoValue.text);
+			assertResults(results, mockups.singleLineNoValue.tags);
+		});
 	});
 
 	describe('#parseBlockComment()', function() {

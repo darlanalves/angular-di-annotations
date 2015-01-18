@@ -1,0 +1,338 @@
+{
+	"type": "Program",
+	"body": [
+		{
+			"type": "ExpressionStatement",
+			"expression": {
+				"type": "CallExpression",
+				"callee": {
+					"type": "FunctionExpression",
+					"id": null,
+					"params": [],
+					"defaults": [],
+					"body": {
+						"type": "BlockStatement",
+						"body": [
+							{
+								"type": "FunctionDeclaration",
+								"id": {
+									"type": "Identifier",
+									"name": "doubleFilter",
+									"leadingComments": [
+										{
+											"type": "Block",
+											"value": "*\n\t * @module foo-module\n\t * @requires bar, baz, some-other-stuff\n\t "
+										},
+										{
+											"type": "Block",
+											"value": "*\n\t * @filter double\n\t "
+										}
+									]
+								},
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "Foo"
+									},
+									{
+										"type": "Identifier",
+										"name": "Bar"
+									}
+								],
+								"defaults": [],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ReturnStatement",
+											"argument": {
+												"type": "FunctionExpression",
+												"id": {
+													"type": "Identifier",
+													"name": "double"
+												},
+												"params": [
+													{
+														"type": "Identifier",
+														"name": "number"
+													}
+												],
+												"defaults": [],
+												"body": {
+													"type": "BlockStatement",
+													"body": [
+														{
+															"type": "ReturnStatement",
+															"argument": {
+																"type": "BinaryExpression",
+																"operator": "*",
+																"left": {
+																	"type": "Identifier",
+																	"name": "number"
+																},
+																"right": {
+																	"type": "Literal",
+																	"value": 2,
+																	"raw": "2"
+																}
+															}
+														}
+													]
+												},
+												"generator": false,
+												"expression": false
+											}
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"trailingComments": [
+									{
+										"type": "Block",
+										"value": "*\n\t * @directive ctSample\n\t "
+									}
+								]
+							},
+							{
+								"type": "FunctionDeclaration",
+								"id": {
+									"type": "Identifier",
+									"name": "ctSampleDirective",
+									"leadingComments": [
+										{
+											"type": "Block",
+											"value": "*\n\t * @directive ctSample\n\t "
+										}
+									]
+								},
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "$compile"
+									}
+								],
+								"defaults": [],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ReturnStatement",
+											"argument": {
+												"type": "ObjectExpression",
+												"properties": [
+													{
+														"type": "Property",
+														"key": {
+															"type": "Identifier",
+															"name": "restrict"
+														},
+														"value": {
+															"type": "Literal",
+															"value": "E",
+															"raw": "'E'"
+														},
+														"kind": "init"
+													},
+													{
+														"type": "Property",
+														"key": {
+															"type": "Identifier",
+															"name": "templateUrl"
+														},
+														"value": {
+															"type": "Literal",
+															"value": "sample.html",
+															"raw": "'sample.html'"
+														},
+														"kind": "init"
+													},
+													{
+														"type": "Property",
+														"key": {
+															"type": "Identifier",
+															"name": "link"
+														},
+														"value": {
+															"type": "Identifier",
+															"name": "linker"
+														},
+														"kind": "init"
+													}
+												]
+											}
+										},
+										{
+											"type": "FunctionDeclaration",
+											"id": {
+												"type": "Identifier",
+												"name": "linker"
+											},
+											"params": [],
+											"defaults": [],
+											"body": {
+												"type": "BlockStatement",
+												"body": [
+													{
+														"type": "ExpressionStatement",
+														"expression": {
+															"type": "CallExpression",
+															"callee": {
+																"type": "Identifier",
+																"name": "$compile"
+															},
+															"arguments": [
+																{
+																	"type": "Literal",
+																	"value": "",
+																	"raw": "''"
+																}
+															]
+														}
+													}
+												]
+											},
+											"generator": false,
+											"expression": false
+										}
+									]
+								},
+								"generator": false,
+								"expression": false,
+								"trailingComments": [
+									{
+										"type": "Block",
+										"value": "*\n\t * @service DomainService\n\t "
+									}
+								]
+							},
+							{
+								"type": "FunctionDeclaration",
+								"id": {
+									"type": "Identifier",
+									"name": "DomainService"
+								},
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "$http"
+									},
+									{
+										"type": "Identifier",
+										"name": "$q"
+									},
+									{
+										"type": "Identifier",
+										"name": "CONST_ONE"
+									}
+								],
+								"defaults": [],
+								"body": {
+									"type": "BlockStatement",
+									"body": []
+								},
+								"generator": false,
+								"expression": false,
+								"leadingComments": [
+									{
+										"type": "Block",
+										"value": "*\n\t * @service DomainService\n\t "
+									}
+								],
+								"trailingComments": [
+									{
+										"type": "Line",
+										"value": " @value"
+									}
+								]
+							},
+							{
+								"type": "VariableDeclaration",
+								"declarations": [
+									{
+										"type": "VariableDeclarator",
+										"id": {
+											"type": "Identifier",
+											"name": "someValue"
+										},
+										"init": {
+											"type": "Literal",
+											"value": 10,
+											"raw": "10"
+										}
+									}
+								],
+								"kind": "var",
+								"leadingComments": [
+									{
+										"type": "Line",
+										"value": " @value"
+									}
+								],
+								"trailingComments": [
+									{
+										"type": "Line",
+										"value": " @const"
+									}
+								]
+							},
+							{
+								"type": "VariableDeclaration",
+								"declarations": [
+									{
+										"type": "VariableDeclarator",
+										"id": {
+											"type": "Identifier",
+											"name": "CONST_ONE"
+										},
+										"init": {
+											"type": "Literal",
+											"value": "one",
+											"raw": "'one'"
+										}
+									}
+								],
+								"kind": "var",
+								"leadingComments": [
+									{
+										"type": "Line",
+										"value": " @const"
+									}
+								]
+							}
+						]
+					},
+					"generator": false,
+					"expression": false
+				},
+				"arguments": []
+			}
+		}
+	],
+	"comments": [
+		{
+			"type": "Block",
+			"value": "*\n\t * @module foo-module\n\t * @requires bar, baz, some-other-stuff\n\t "
+		},
+		{
+			"type": "Block",
+			"value": "*\n\t * @filter double\n\t "
+		},
+		{
+			"type": "Block",
+			"value": "*\n\t * @directive ctSample\n\t "
+		},
+		{
+			"type": "Block",
+			"value": "*\n\t * @service DomainService\n\t "
+		},
+		{
+			"type": "Line",
+			"value": " @value"
+		},
+		{
+			"type": "Line",
+			"value": " @const"
+		}
+	]
+}
