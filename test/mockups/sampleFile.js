@@ -15,9 +15,9 @@
 	}
 
 	/**
-	 * @directive ctSample
+	 * @directive sample
 	 */
-	function ctSampleDirective($compile) {
+	function sampleDirective($compile) {
 		/**
 		 * Foo Whoo
 		 */
@@ -28,7 +28,7 @@
 		};
 
 		function linker() {
-			$compile('');
+			$compile('<div />');
 		}
 	}
 
@@ -36,7 +36,17 @@
 	 * @service DomainService
 	 */
 	function DomainService($http, $q, CONST_ONE) {
+		/**
+		 * Find one item
+		 * @param {String} id Item to search for
+		 */
+		function findOne(id) {
 
+		}
+
+		return {
+			findOne: findOne
+		};
 	}
 
 	// @value
