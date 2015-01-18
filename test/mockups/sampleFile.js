@@ -45,4 +45,16 @@
 	// @const
 	var CONST_ONE = 'one';
 
+	/**
+	 * @controller FooEditController
+	 */
+	function FooEditController($scope, $http, DomainService) {
+		$scope.save = saveItem;
+
+		// saves the item on scope
+		function saveItem(argument) {
+			// here's some code for that
+		}
+	}
+
 })();

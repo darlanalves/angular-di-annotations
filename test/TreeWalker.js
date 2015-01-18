@@ -26,7 +26,7 @@ describe('TreeWalker', function() {
 		it('should process the source tree and return the tokens', function() {
 			var walker = new TreeWalker(sampleTree);
 			var tokens = walker.walk();
-			console.log('>>', JSON.stringify(tokens, null, ' '));
+			console.log('>>', JSON.stringify(tokens, null, '\t'));
 		});
 	});
 });
