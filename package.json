@@ -1,0 +1,22 @@
+{
+	"name": "angular-di-annotated",
+	"version": "0.0.0",
+	"description": "",
+	"main": "index.js",
+	"dependencies": {
+		"through": "~2.3.6",
+		"esprima": "git://github.com/ariya/esprima",
+		"escodegen": "^1.4.1"
+	},
+	"devDependencies": {
+		"expect.js": "^0.3.1"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": {
+		"name": "Darlan Alves",
+		"email": "me@darlanalv.es"
+	},
+	"license": "ISC"
+}
