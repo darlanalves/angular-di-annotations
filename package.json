@@ -5,12 +5,13 @@
   "main": "index.js",
   "dependencies": {
     "esprima": "git://github.com/ariya/esprima",
-    "esprima-walk": "^0.1.0",
     "bufferstreams": "0.0.2",
-    "through2": "^0.6.3"
+    "through2": "^0.6.3",
+    "xtend": "^4.0.0"
   },
   "devDependencies": {
-    "expect.js": "^0.3.1"
+    "expect.js": "^0.3.1",
+    "escodegen": "^1.6.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

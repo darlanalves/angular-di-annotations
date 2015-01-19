@@ -7,14 +7,14 @@ describe('Parser', function() {
 	describe('#parseLineComment()', function() {
 		it('should return an empty array if no comment was provided', function() {
 			var result = Parser.parseLineComment();
-			assert.equal(Array.isArray(result), true);
-			assert.equal(result.length, 0);
+			assert(Array.isArray(result));
+			assert(result.length === 0);
 		});
 
 		it('should return an empty array a invalid comment was provided', function() {
 			var result = Parser.parseLineComment('123');
-			assert.equal(Array.isArray(result), true);
-			assert.equal(result.length, 0);
+			assert(Array.isArray(result));
+			assert(result.length === 0);
 		});
 
 		it('should parse a tag/value pair in single line comments', function() {
@@ -61,7 +61,7 @@ function assertResults(results, tags) {
 			expectedName = referenceTag.name,
 			expectedValue = referenceTag.value;
 
-		assert.equal(expectedName, tagToCheck.name, 'Tag name is different than expected');
+		assert.equal(tagToCheck.name, expectedName, 'Tag name is different than expected');
 
 		if (typeof expectedValue === 'object') {
 			assert.deepEqual(tagToCheck.value, expectedValue, 'Tag value is not as expected');

@@ -1,5 +1,4 @@
 (function() {
-
 	/**
 	 * @module foo-module
 	 * @requires bar, baz, some-other-stuff
@@ -8,10 +7,15 @@
 	/**
 	 * @filter double
 	 */
-	function doubleFilter(Foo, Bar) {
-		return function double(number) {
-			return number * 2;
-		};
+	function doubleFilter(MathHelper) {
+		/**
+		 * @param {Number} number The number to multiply
+		 */
+		function double(number) {
+			return MathHelper.double(number);
+		}
+
+		return double;
 	}
 
 	/**
@@ -40,9 +44,7 @@
 		 * Find one item
 		 * @param {String} id Item to search for
 		 */
-		function findOne(id) {
-
-		}
+		function findOne(id) {}
 
 		return {
 			findOne: findOne
@@ -62,7 +64,7 @@
 		$scope.save = saveItem;
 
 		// saves the item on scope
-		function saveItem(argument) {
+		function saveItem() {
 			// here's some code for that
 		}
 	}

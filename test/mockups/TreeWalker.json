@@ -90,7 +90,7 @@
 								"trailingComments": [
 									{
 										"type": "Block",
-										"value": "*\n\t * @directive ctSample\n\t "
+										"value": "*\n\t * @directive sample\n\t "
 									}
 								]
 							},
@@ -98,11 +98,11 @@
 								"type": "FunctionDeclaration",
 								"id": {
 									"type": "Identifier",
-									"name": "ctSampleDirective",
+									"name": "sampleDirective",
 									"leadingComments": [
 										{
 											"type": "Block",
-											"value": "*\n\t * @directive ctSample\n\t "
+											"value": "*\n\t * @directive sample\n\t "
 										}
 									]
 								},
@@ -132,7 +132,13 @@
 															"value": "E",
 															"raw": "'E'"
 														},
-														"kind": "init"
+														"kind": "init",
+														"leadingComments": [
+															{
+																"type": "Block",
+																"value": "*\n\t\t * Foo Whoo\n\t\t "
+															}
+														]
 													},
 													{
 														"type": "Property",
@@ -184,8 +190,8 @@
 															"arguments": [
 																{
 																	"type": "Literal",
-																	"value": "",
-																	"raw": "''"
+																	"value": "<div />",
+																	"raw": "'<div />'"
 																}
 															]
 														}
@@ -210,7 +216,13 @@
 								"type": "FunctionDeclaration",
 								"id": {
 									"type": "Identifier",
-									"name": "DomainService"
+									"name": "DomainService",
+									"leadingComments": [
+										{
+											"type": "Block",
+											"value": "*\n\t * @service DomainService\n\t "
+										}
+									]
 								},
 								"params": [
 									{
@@ -229,16 +241,57 @@
 								"defaults": [],
 								"body": {
 									"type": "BlockStatement",
-									"body": []
+									"body": [
+										{
+											"type": "FunctionDeclaration",
+											"id": {
+												"type": "Identifier",
+												"name": "findOne"
+											},
+											"params": [
+												{
+													"type": "Identifier",
+													"name": "id"
+												}
+											],
+											"defaults": [],
+											"body": {
+												"type": "BlockStatement",
+												"body": []
+											},
+											"generator": false,
+											"expression": false,
+											"leadingComments": [
+												{
+													"type": "Block",
+													"value": "*\n\t\t * Find one item\n\t\t * @param {String} id Item to search for\n\t\t "
+												}
+											]
+										},
+										{
+											"type": "ReturnStatement",
+											"argument": {
+												"type": "ObjectExpression",
+												"properties": [
+													{
+														"type": "Property",
+														"key": {
+															"type": "Identifier",
+															"name": "findOne"
+														},
+														"value": {
+															"type": "Identifier",
+															"name": "findOne"
+														},
+														"kind": "init"
+													}
+												]
+											}
+										}
+									]
 								},
 								"generator": false,
 								"expression": false,
-								"leadingComments": [
-									{
-										"type": "Block",
-										"value": "*\n\t * @service DomainService\n\t "
-									}
-								],
 								"trailingComments": [
 									{
 										"type": "Line",
@@ -298,7 +351,98 @@
 										"type": "Line",
 										"value": " @const"
 									}
+								],
+								"trailingComments": [
+									{
+										"type": "Block",
+										"value": "*\n\t * @controller FooEditController\n\t "
+									}
 								]
+							},
+							{
+								"type": "FunctionDeclaration",
+								"id": {
+									"type": "Identifier",
+									"name": "FooEditController",
+									"leadingComments": [
+										{
+											"type": "Block",
+											"value": "*\n\t * @controller FooEditController\n\t "
+										}
+									]
+								},
+								"params": [
+									{
+										"type": "Identifier",
+										"name": "$scope"
+									},
+									{
+										"type": "Identifier",
+										"name": "$http"
+									},
+									{
+										"type": "Identifier",
+										"name": "DomainService"
+									}
+								],
+								"defaults": [],
+								"body": {
+									"type": "BlockStatement",
+									"body": [
+										{
+											"type": "ExpressionStatement",
+											"expression": {
+												"type": "AssignmentExpression",
+												"operator": "=",
+												"left": {
+													"type": "MemberExpression",
+													"computed": false,
+													"object": {
+														"type": "Identifier",
+														"name": "$scope"
+													},
+													"property": {
+														"type": "Identifier",
+														"name": "save"
+													}
+												},
+												"right": {
+													"type": "Identifier",
+													"name": "saveItem"
+												}
+											},
+											"trailingComments": [
+												{
+													"type": "Line",
+													"value": " saves the item on scope"
+												}
+											]
+										},
+										{
+											"type": "FunctionDeclaration",
+											"id": {
+												"type": "Identifier",
+												"name": "saveItem"
+											},
+											"params": [],
+											"defaults": [],
+											"body": {
+												"type": "BlockStatement",
+												"body": []
+											},
+											"generator": false,
+											"expression": false,
+											"leadingComments": [
+												{
+													"type": "Line",
+													"value": " saves the item on scope"
+												}
+											]
+										}
+									]
+								},
+								"generator": false,
+								"expression": false
 							}
 						]
 					},
@@ -320,11 +464,19 @@
 		},
 		{
 			"type": "Block",
-			"value": "*\n\t * @directive ctSample\n\t "
+			"value": "*\n\t * @directive sample\n\t "
+		},
+		{
+			"type": "Block",
+			"value": "*\n\t\t * Foo Whoo\n\t\t "
 		},
 		{
 			"type": "Block",
 			"value": "*\n\t * @service DomainService\n\t "
+		},
+		{
+			"type": "Block",
+			"value": "*\n\t\t * Find one item\n\t\t * @param {String} id Item to search for\n\t\t "
 		},
 		{
 			"type": "Line",
@@ -333,6 +485,18 @@
 		{
 			"type": "Line",
 			"value": " @const"
+		},
+		{
+			"type": "Block",
+			"value": "*\n\t * @controller FooEditController\n\t "
+		},
+		{
+			"type": "Line",
+			"value": " saves the item on scope"
+		},
+		{
+			"type": "Line",
+			"value": " here's some code for that"
 		}
 	]
 }

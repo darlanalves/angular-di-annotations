@@ -12,11 +12,9 @@ describe('NodeProcessors', function() {
 			var result = NodeProcessors.handleFunction(samples.functionNode),
 				annotations = result.annotations;
 
-			assert.equal(result instanceof SyntaxNode, true, 'Is not returning a SyntaxNode');
+			assertValidSyntaxNode(result);
+
 			assert.equal(Array.isArray(result.params), true, 'Missing parsed function parameters');
-			assert.equal(typeof annotations, 'object', 'Missing parsed function parameters');
-			assert.equal(Array.isArray(annotations.before), true, 'Invalid annotation object');
-			assert.equal(Array.isArray(annotations.after), true, 'Invalid annotation object');
 
 			assert(result.name === 'fooFilter');
 			assert(result.type === SyntaxNode.NodeType.FUNCTION);
@@ -36,6 +34,7 @@ describe('NodeProcessors', function() {
 			assert(moduleBlock.tags[1].value === 'bar, baz, some-other-stuff');
 
 			var functionCommentBlock = annotations.before[1];
+
 			assert(functionCommentBlock instanceof Annotation);
 			assert(functionCommentBlock.type === Annotation.BLOCK);
 			assert(functionCommentBlock.tags.length === 1);
@@ -43,11 +42,29 @@ describe('NodeProcessors', function() {
 			assert(functionCommentBlock.tags[0].value === 'fooFilter');
 
 			assert.equal(functionCommentBlock instanceof Annotation, true);
-
 		});
 	});
 
 	describe('#handleVariable', function() {
+		var result = NodeProcessors.handleVariable(samples.variableNode),
+			annotations = result.annotations,
+			constBlock = annotations.before[0];
 
+		assertValidSyntaxNode(result);
+		assert(result.name === 'someValue');
+
+		assert(constBlock.type === Annotation.LINE);
+		assert(constBlock.tags.length === 1);
+		assert(constBlock.tags[0].name === 'value');
 	});
 });
+
+function assertValidSyntaxNode(value) {
+	var annotations = value.annotations;
+
+	assert(value instanceof SyntaxNode, 'Is not returning a SyntaxNode');
+	assert(typeof annotations === 'object', 'Missing parsed function parameters');
+	assert(Array.isArray(annotations.before), 'Invalid annotation object');
+	assert(Array.isArray(annotations.after), 'Invalid annotation object');
+	assert(value.hasAnnotations === true);
+}
