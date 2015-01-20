@@ -46,7 +46,7 @@ myDirective.$inject = ['$compile'];
 
 ### runOnString(string);
 
-```
+```javascript
 var annotations = require('angular-di-annotations').Runner;
 var code = annotations.runOnString(code);
 
@@ -54,7 +54,7 @@ var code = annotations.runOnString(code);
 
 ### runOnFile(filePath);
 
-```
+```javascript
 var annotations = require('angular-di-annotations').Runner;
 var code = annotations.runOnFile('/path/to/file.js');
 
@@ -62,7 +62,7 @@ var code = annotations.runOnFile('/path/to/file.js');
 
 ## Gulp
 
-```
+```javascript
 var gulp = require('gulp'),
 	annotations = require('angular-di-annotations').Stream;
 
@@ -71,4 +71,15 @@ gulp.task('annotate', function() {
 		.pipe(annotations())
 		.pipe(gulp.dest('./output/'));
 });
+```
+
+## Shell
+
+```bash
+
+cat input.js | ngannotations
+
+ngannotations -i input.js > output.js
+
+ngannotations -i input.js -o output.js
 ```
