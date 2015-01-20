@@ -60,6 +60,15 @@ var code = annotations.runOnFile('/path/to/file.js');
 
 ```
 
+## Node.JS vanilla fs
+
+```javascript
+var stream = require('angular-di-annotations').Stream;
+var fs = require('fs');
+
+fs.createReadStream('./input.js').pipe(stream()).pipe(fs.createWriteStream('./output.js'));
+```
+
 ## Gulp
 
 ```javascript
