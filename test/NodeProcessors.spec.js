@@ -46,16 +46,19 @@ describe('NodeProcessors', function() {
 	});
 
 	describe('#handleVariable', function() {
-		var result = NodeProcessors.handleVariable(samples.variableNode),
-			annotations = result.annotations,
-			constBlock = annotations.before[0];
+		it('should parse a variable declaration and return a SyntaxNode', function() {
+			var result = NodeProcessors.handleVariable(samples.variableNode),
+				annotations = result.annotations,
+				constBlock = annotations.before[0];
 
-		assertValidSyntaxNode(result);
-		assert(result.name === 'someValue');
+			assertValidSyntaxNode(result);
+			assert(result.name === 'someValue');
 
-		assert(constBlock.type === Annotation.LINE);
-		assert(constBlock.tags.length === 1);
-		assert(constBlock.tags[0].name === 'value');
+			assert(constBlock.type === Annotation.LINE);
+			assert(constBlock.tags.length === 1);
+			assert(constBlock.tags[0].name === 'value');
+			assert(constBlock.tags[0].value === 'SOME_VALUE');
+		});
 	});
 });
 

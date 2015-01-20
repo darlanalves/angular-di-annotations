@@ -5,19 +5,25 @@ function AngularStub(fn) {
 	this.directives = {};
 	this.constants = {};
 	this.values = {};
+	this.animations = {};
 	this.services = {};
 	this.factories = {};
 	this.providers = {};
+	this.configBlocks = [];
+	this.runBlocks = [];
 }
 
 function runWithStub() {
-	// console.log('' + this.fn);
 	this.fn.call(null, this);
 }
 
 function createStubMethod(propertyToAssign) {
 	return function(name, value) {
-		this[propertyToAssign][name] = value;
+		if (Array.isArray(this[propertyToAssign])) {
+			this[propertyToAssign].push(name);
+		} else {
+			this[propertyToAssign][name] = value;
+		}
 	};
 }
 
@@ -25,6 +31,10 @@ AngularStub.prototype = {
 	constructor: AngularStub,
 	runStub: runWithStub,
 
+	config: createStubMethod('configBlocks'),
+	run: createStubMethod('runBlocks'),
+
+	animation: createStubMethod('animations'),
 	controller: createStubMethod('controllers'),
 	directive: createStubMethod('directives'),
 	filter: createStubMethod('filters'),

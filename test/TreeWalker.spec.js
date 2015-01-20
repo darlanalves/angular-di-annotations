@@ -24,14 +24,13 @@ describe('TreeWalker', function() {
 		});
 
 		it('should process the source tree and return the tokens', function() {
-			var sampleTree = readFileAsAst('sampleFile.js');
+			var sampleTree = readFileAsAst('all.js');
 			var tokens = TreeWalker.walkTree(sampleTree);
 			assert.notEqual(tokens.length, 0, 'No tokens returned from walker');
-			// console.log('>>', JSON.stringify(tokens[0], null, '\t'));
 		});
 
 		it('should attach the original AST node if option `attachNodes` is true', function() {
-			var sampleTree = readFileAsAst('sampleFile.js');
+			var sampleTree = readFileAsAst('all.js');
 			var tokens = TreeWalker.walkTree(sampleTree, {
 				attachNodes: true
 			});
@@ -39,7 +38,6 @@ describe('TreeWalker', function() {
 			assert.notEqual(tokens.length, 0, 'No tokens returned from walker');
 			assert(tokens[0].sourceNode !== undefined);
 			assert(tokens[0].parentNode !== undefined);
-			// console.log('>>', JSON.stringify(tokens[0].sourceNode, null, '\t'));
 		});
 	});
 
@@ -53,28 +51,28 @@ describe('TreeWalker', function() {
 		});
 
 		it('should declare controllers', function() {
-			var stub = runStubOnFile('sampleController.js');
+			var stub = runStubOnFile('controller.js');
 
 			assert(typeof stub.controllers.FooController === 'function', 'Controller declaration not found');
 			assert.deepEqual(stub.controllers.FooController.$inject, ['$scope'], 'Controller dependencies not declared');
 		});
 
 		it('should declare directives', function() {
-			var stub = runStubOnFile('sampleDirective.js');
+			var stub = runStubOnFile('directive.js');
 
 			assert(typeof stub.directives.sample === 'function', 'Directive declaration not found');
 			assert.deepEqual(stub.directives.sample.$inject, ['$compile'], 'Directive dependencies not declared');
 		});
 
 		it('should declare filters', function() {
-			var stub = runStubOnFile('sampleFilter.js');
+			var stub = runStubOnFile('filter.js');
 
 			assert(typeof stub.filters.double === 'function', 'Filter declaration not found');
 			assert.deepEqual(stub.filters.double.$inject, ['MathHelper'], 'Filter dependencies not declared');
 		});
 
 		it('should declare services', function() {
-			var stub = runStubOnFile('sampleServices.js');
+			var stub = runStubOnFile('services.js');
 
 			assert(typeof stub.services.DomainService === 'function', 'Service declaration not found');
 			assert.deepEqual(stub.services.DomainService.$inject, ['$http', '$q', 'CONST_ONE'], 'Service dependencies not declared');
@@ -85,14 +83,38 @@ describe('TreeWalker', function() {
 			assert(typeof stub.providers.SomeProvider === 'function', 'Provider declaration not found');
 			assert.deepEqual(stub.providers.SomeProvider.$inject, ['$locationProvider'], 'Provider dependencies not declared');
 		});
+
+		it('should declare animations', function() {
+			var stub = runStubOnFile('animation.js');
+			var animationName = '.fade-in';
+
+			assert(typeof stub.animations[animationName] === 'function', 'Animation not found');
+			assert.deepEqual(stub.animations[animationName].$inject, ['$injector'], 'Animation dependencies not declared');
+		});
+
+		it('should declare constants', function() {
+			var stub = runStubOnFile('staticValues.js');
+
+			assert(stub.constants.THE_WORD === 'bird', 'Constant "THE_WORD" not found');
+			assert(stub.constants.PI === 3.14, 'Constant "PI" not found');
+			assert(stub.values.foo === 'foo', 'Value "foo" not found');
+			assert(stub.values.level === 9000, 'Value "level" not found');
+		});
+
+		it('should declare config and run blocks', function() {
+			var stub = runStubOnFile('configAndRun.js');
+
+			assert(typeof stub.configBlocks[0] === 'function', 'Config block not found');
+			assert(typeof stub.runBlocks[0] === 'function', 'Run block not found');
+		});
 	});
 });
 
 function readFileAsAst(file) {
-	var sampleCode = fs.readFileSync(__dirname + '/mockups/' + file, 'utf8');
+	var sampleCode = fs.readFileSync(__dirname + '/samples/' + file, 'utf8');
 	var tree = esprima.parse(sampleCode, esprimaOptions);
 
-	// optimization only. the comments won't be traversed
+	// for optimization only. the comments won't be traversed during the tests
 	delete tree.comments;
 
 	return tree;

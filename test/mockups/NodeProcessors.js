@@ -98,18 +98,10 @@ module.exports = {
 		"kind": "var",
 		"leadingComments": [{
 			"type": "Line",
-			"value": " @value",
+			"value": " @value SOME_VALUE",
 			"range": [
 				291,
 				300
-			]
-		}],
-		"trailingComments": [{
-			"type": "Line",
-			"value": " @const",
-			"range": [
-				322,
-				331
 			]
 		}]
 	}
