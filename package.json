@@ -1,18 +1,17 @@
 {
-  "name": "angular-di-annotated",
+  "name": "angular-di-annotations",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "dependencies": {
     "esprima": "git://github.com/ariya/esprima",
+    "escodegen": "^1.6.0",
     "bufferstreams": "0.0.2",
     "through2": "^0.6.3",
-    "xtend": "^4.0.0"
+    "xtend": "^4.0.0",
+    "walk-ast": "0.0.2"
   },
-  "devDependencies": {
-    "expect.js": "^0.3.1",
-    "escodegen": "^1.6.0"
-  },
+  "devDependencies": {},
   "scripts": {
     "test": "mocha"
   },
