@@ -54,7 +54,7 @@
 	// @value
 	var someValue = 10;
 
-	// @const
+	// @constant
 	var CONST_ONE = 'one';
 
 	/**
