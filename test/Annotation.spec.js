@@ -83,7 +83,7 @@ describe('Annotation', function() {
 	});
 
 	describe('#toJSON', function() {
-		it('should convert the annotation back to an object literal', function() {
+		it('should convert the annotation back to an object literal suitable for Annotation constructor', function() {
 			var annotation = new Annotation(Annotation.LINE, [{
 				name: 'tag',
 				value: 'value'
@@ -116,6 +116,34 @@ describe('Annotation', function() {
 				secondAnnotationSource = secondAnnotation.toJSON();
 
 			assert.deepEqual(secondAnnotationSource, firstAnnotationSource, 'The generated source is not as expected');
+		});
+	});
+
+	describe('#toObject', function() {
+		it('should convert the annotation to an object literal with tags and values as a hash map', function() {
+			var tags = [{
+				name: 'tag',
+				value: 'value'
+			}, {
+				name: 'person',
+				value: {
+					name: 'Jack',
+					age: 32
+				}
+			}];
+
+			var annotation = new Annotation(Annotation.BLOCK, tags);
+
+			var object = annotation.toObject(),
+				expected = {
+					type: Annotation.BLOCK,
+					tags: {
+						tag: 'value',
+						person: tags[1].value
+					}
+				};
+
+			assert.deepEqual(object, expected, 'toObject() result not as expected');
 		});
 	});
 

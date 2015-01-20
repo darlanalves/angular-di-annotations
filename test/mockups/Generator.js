@@ -2,24 +2,24 @@ var lib = require('../../lib/'),
 	Annotation = lib.Annotation,
 	SyntaxNode = lib.SyntaxNode;
 
-var controllerAnnotation = new Annotation({
-	type: Annotation.BLOCK,
-	tags: [{
-		name: 'controller',
-		value: 'FooEditController'
-	}]
-});
+function createFunctionNode(functionName, functionParams, annotationTags) {
+	var annotation = new Annotation({
+		type: Annotation.BLOCK,
+		tags: annotationTags
+	});
 
-var controllerNode = new SyntaxNode({
-	type: SyntaxNode.NodeType.FUNCTION,
-	params: ['$scope', '$http', 'DomainService'],
-	name: 'FooEditController',
-	hasAnnotations: true
-});
+	var node = new SyntaxNode({
+		type: SyntaxNode.NodeType.FUNCTION,
+		params: functionParams,
+		name: functionName,
+		hasAnnotations: true
+	});
 
-controllerNode.annotations.before.push(controllerAnnotation);
+	node.annotations.before.push(annotation);
+
+	return node;
+}
 
 module.exports = {
-	controllerAnnotation: controllerAnnotation,
-	controllerNode: controllerNode
+	createFunctionNode: createFunctionNode
 };
