@@ -1,5 +1,6 @@
 var assert = require('assert'),
-	TreeWalker = require('../lib/').TreeWalker,
+	lib = require('../lib/'),
+	TreeWalker = lib.TreeWalker,
 	AngularStub = require(__dirname + '/stub/AngularStub'),
 	esprima = require('esprima'),
 	escodegen = require('escodegen'),
@@ -12,6 +13,8 @@ var assert = require('assert'),
 	walkOptions = {
 		esprima: esprimaOptions
 	};
+
+lib.constants.MODULE = '$module';
 
 describe('TreeWalker', function() {
 	describe('#walkTree(tree, options)', function() {
@@ -119,7 +122,6 @@ function readFileAsAst(file) {
 
 	return tree;
 }
-
 
 function compileCode(code) {
 	var fn = new Function('$module', code);
