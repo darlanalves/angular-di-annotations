@@ -63,10 +63,6 @@ describe('Generator', function() {
 
 
 function compareTokens(tokens, expected) {
-	/*if (tokens.length !== expected.length) {
-		throw 'Injectable declaration not as expected: token count not equal';
-	}*/
-
 	expected.forEach(function(expectedToken, index) {
 		if (expectedToken.type !== this[index].type || expectedToken.value !== this[index].value) {
 			throw new Error('Injectable declaration invalid. Token of type `' + expectedToken.type + '` was expected: - ' + expectedToken.value + ' -');

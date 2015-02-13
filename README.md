@@ -16,12 +16,18 @@ AngularJS module calls.
 So if you have the code below:
 
 ```
-// @controller MyController
+/**
+ * @module foo
+ * @controller MyController
+ */
 function ThisIsAController($scope) {
 	// ...
 }
 
-// @directive
+/**
+ * @module foo
+ * @directive
+ */
 function myDirective($compile) {
 	// ...
 }
@@ -33,12 +39,12 @@ You will run the JS script through this library and it will inject the AngularJS
 ```
 function ThisIsAController($scope) {}
 
-$module.controller('MyController', ThisIsAController);
+angular.module('foo').controller('MyController', ThisIsAController);
 ThisIsAController.$inject = ['$scope'];
 
 function myDirective($compile) {}
 
-$module.directive('undefined', myDirective);
+angular.module('foo').directive('myDirective', myDirective);
 myDirective.$inject = ['$compile'];
 ```
 
@@ -91,4 +97,44 @@ cat input.js | ngannotations
 ngannotations -i input.js > output.js
 
 ngannotations -i input.js -o output.js
+```
+
+## Changing the generated code
+
+You can change the syntax generated on this module modifying tree constants before running it.
+These are their default values:
+
+	```
+	RUNNABLE: "%module%.%type%(%value%);",
+	INJECTABLE: "%module%.%type%('%name%', %value%);",
+	MODULE: "angular.module('%name%')"
+	```
+
+You could use, for example, a syntax that binds to a global variable that points to your module:
+
+```javascript
+// source file
+
+/**
+ * @controller
+ */
+function FooController() {}
+```
+
+```javascript
+var annotations = require('angular-di-annotations'),
+	runner = annotations.Runner,
+	constants = annotations.constants;
+
+constants.MODULE = 'myModule';
+
+var generatedCode = runner.runOnString(source);
+
+```
+
+This way the final code will look like this:
+
+```
+function FooController() {}
+myModule.controller('FooController', FooController);
 ```
